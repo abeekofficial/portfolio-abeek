@@ -87,6 +87,9 @@ export default function Projects() {
                         src={project.image}
                         className="w-full object-contain h-[460px] xl:h-full"
                       />
+                      {p.id === project.id && (
+                        <div className="w-full h-full absolute top-0 bg-pink-50/20 group-hover:bg-pink-50/0 transition-all"></div>
+                      )}
                     </div>
                   </div>
                 </SwiperSlide>
