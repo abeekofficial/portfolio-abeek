@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+      @apply font-jetbrains bg-primary text-white leading-loose;
+    }
+    .h1 {
+      @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
+    }
+    .h2 {
+      @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
+    }
+
+    .h3 {
+      @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
+    }
+}
+
+@layer base {
+  .font-outline-2 {
+    -webkit-text-stroke: 2px black;
+  }
+
+  .font-outline-4 {
+    -webkit-text-stroke: 4px black;
+  }
+}
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px #C4C4C4;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
