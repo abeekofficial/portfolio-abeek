@@ -45,7 +45,7 @@ export default function Projects() {
               <div className="border mt-1 rounded-md border-white/30"></div>
               <div className="flex items-center gap-3">
                 <Link
-                  to={project.live}
+                  to={project?.live}
                   className="w-12 h-12 mt-2 flex items-center justify-center rounded-full bg-white/20"
                 >
                   <TooltipProvider delayDuration={100}>
@@ -78,21 +78,10 @@ export default function Projects() {
               slidesPerView={1}
               spaceBetween={30}
               onSlideChange={handleSlideChange}
+              className="xl:h-[520px] mb-12"
             >
               {projects.map((p, i) => (
-                <SwiperSlide key={i} className="w-full">
-                  <div className="fixed flex justify-center items-center group h-[200px]  bg-pink-50/20">
-                    <div className="relative w-full h-full">
-                      <img
-                        src={project.image}
-                        className="w-full object-contain h-[460px] xl:h-full"
-                      />
-                      {p.id === project.id && (
-                        <div className="w-full h-full absolute top-0 bg-pink-50/20 group-hover:bg-pink-50/0 transition-all"></div>
-                      )}
-                    </div>
-                  </div>
-                </SwiperSlide>
+                <SwiperSlide key={i}>slide</SwiperSlide>
               ))}
             </Swiper>
           </div>

@@ -19,7 +19,7 @@ const projects: projectsProps = [
     description:
       "The app clone of youtube.In the app you can see information of videos and channels.It has features like searching for videos and selecting categories too",
     image: youtube,
-    live: "",
+    live: "https://yt-abeek.netlify.app/",
     github: "https://github.com/abeekofficial/youtube_clone",
     stack: [{ name: "React Js, Material Ui, Typescript, Tailwind" }],
   },
