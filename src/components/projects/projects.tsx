@@ -10,6 +10,10 @@ import {
 } from "../ui/tooltip";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-creative";
+import { useTheme } from "@/context/ThemeContext";
+import { EffectCreative } from "swiper/modules";
 
 export default function Projects() {
   const [project, setProject] = useState(projects[0]);
@@ -18,6 +22,8 @@ export default function Projects() {
     const currentIndex = swiper.activeIndex;
     setProject(projects[currentIndex]);
   };
+
+  const { theme } = useTheme();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -26,47 +32,53 @@ export default function Projects() {
     >
       <section className="container mx-auto">
         <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-          <div className="flex w-full xl:w-1/2 xl:h-[460px] flex-col xl:justify-between order-2 xl:order-none">
-            <li className="mx-auto flex gap-5 xl:justify-start rounded-2xl flex-col">
-              <h1 className="text-6xl font-bold text-outline">{project.id}</h1>
-              <h1 className="text-3xl font-semibold font-poppins">
+          <div
+            className={`flex w-full xl:w-1/2 xl:h-[460px] flex-col xl:justify-between order-2 xl:order-none ${
+              theme === "light" ? `bg-gray-400 text-black p-3 rounded-lg` : ""
+            }`}
+          >
+            <li className="flex flex-col gap-10">
+              <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
+                {project.id}
+              </div>
+              <h2 className="text-[42px] font-bold leading-none group-hover:text-accent transition-all duration-500 capitalize">
                 {project.title}
-              </h1>
-              <p className="text-white/60 text-[12px] leading-6">
-                {project.description}
-              </p>
-              <p className="flex items-center gap-2">
-                {project.stack.map((s, i) => (
-                  <div className="text-accent text-sm" key={i}>
-                    {s.name}
-                  </div>
+              </h2>
+              <p className="text-white/60">{project.description}</p>
+              <ul>
+                {project.stack.map((stack, index) => (
+                  <li key={index} className="text-xl text-accent">
+                    {stack.name}
+                  </li>
                 ))}
-              </p>
-              <div className="border mt-1 rounded-md border-white/30"></div>
-              <div className="flex items-center gap-3">
-                <Link
-                  to={project?.live}
-                  className="w-12 h-12 mt-2 flex items-center justify-center rounded-full bg-white/20"
-                >
+              </ul>
+              <div className="border border-white/20"></div>
+              <div className="flex gap-4">
+                <Link to={project.live}>
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
-                      <TooltipTrigger>
-                        <BsArrowUpRight className="text-xl font-bold hover:text-accent transition-all" />
+                      <TooltipTrigger
+                        className={`w-16 h-16 rounded-xl flex items-center justify-center hover:border hover:border-accent bg-white/20 group-hover:bg-accent${
+                          theme === "light" ? `bg-gray-400 text-black` : ""
+                        }`}
+                      >
+                        <BsArrowUpRight className="text-3xl hover:text-accent" />
                       </TooltipTrigger>
-                      <TooltipContent>Live Project</TooltipContent>
+                      <TooltipContent>
+                        <p>View Project</p>
+                      </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 </Link>
-                <Link
-                  to={project.github}
-                  className="w-12 h-12 mt-2 flex items-center justify-center rounded-full bg-white/20"
-                >
+                <Link to={project.github}>
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
-                      <TooltipTrigger>
-                        <BsGithub className="text-xl font-bold hover:text-accent transition-all" />
+                      <TooltipTrigger className="w-16 h-16 rounded-xl flex items-center justify-center hover:border hover:border-accent bg-white/20 group-hover:bg-accent">
+                        <BsGithub className="text-3xl hover:text-accent" />
                       </TooltipTrigger>
-                      <TooltipContent>Github code</TooltipContent>
+                      <TooltipContent>
+                        <p>View Code</p>
+                      </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 </Link>
@@ -75,13 +87,37 @@ export default function Projects() {
           </div>
           <div className="w-full xl:w-1/2">
             <Swiper
-              slidesPerView={1}
-              spaceBetween={30}
+              grabCursor={true}
+              effect={"creative"}
+              creativeEffect={{
+                prev: {
+                  shadow: true,
+                  translate: [0, 0, -400],
+                },
+                next: {
+                  translate: ["100%", 0, 0],
+                },
+              }}
+              modules={[EffectCreative]}
               onSlideChange={handleSlideChange}
-              className="xl:h-[520px] mb-12"
+              className="mySwiper xl:h-[520px] mb-12"
             >
-              {projects.map((p, i) => (
-                <SwiperSlide key={i}>slide</SwiperSlide>
+              {projects.map((p) => (
+                <SwiperSlide className="w-full h-full">
+                  <div className="h-[260px] relative group flex justify-center items-center bg-pink-50/20">
+                    <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
+                    <div className="relative w-full">
+                      <img
+                        src={p.image}
+                        loading="lazy"
+                        width={570}
+                        height={362}
+                        alt={p.title}
+                        className="w-[850px] object-cover rounded-md"
+                      />
+                    </div>
+                  </div>
+                </SwiperSlide>
               ))}
             </Swiper>
           </div>

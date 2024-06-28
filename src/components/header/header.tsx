@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import DesktopNav from "./desktop";
 import { Switch } from "../ui/switch";
-import { Button } from "../ui/button";
 import MobileNav from "./mobile";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+} from "../ui/select";
+import { useTheme } from "@/context/ThemeContext";
+import { LanguagesIcon } from "lucide-react";
 
-export default function Header() {
+const Header = (): JSX.Element => {
   const [top, setTop] = useState<boolean>(true);
 
   useEffect(() => {
@@ -14,9 +22,14 @@ export default function Header() {
     window.addEventListener("scroll", scrollHandler);
     return () => window.removeEventListener("scroll", scrollHandler);
   }, [top]);
+
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <section
-      className={` sticky z-20 right-0 left-0 top-0 py-8 ${
+      className={`sticky z-20 right-0 left-0 top-0 py-8 ${
+        theme === "light" ? `bg-white shadow-lg` : ``
+      } ${
         !top &&
         `bg-[#0F1924] shadow-lg duration-500 ease-in-out shadow-green-700`
       }`}
@@ -33,10 +46,34 @@ export default function Header() {
           <DesktopNav />
           <div className="flex gap-6 items-center">
             {" "}
-            <Button className="border-[1px] hover:border-accent">
-              Hire me
-            </Button>
-            <Switch />
+            <Switch onClick={toggleTheme} />
+            <Select>
+              <SelectTrigger className={`w-[90px] px-2 text-gray-500`}>
+                <LanguagesIcon className={``} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem
+                    value="eng"
+                    className={`${theme === "light" ? `text-black` : ""}`}
+                  >
+                    Eng
+                  </SelectItem>
+                  <SelectItem
+                    value="rus"
+                    className={`${theme === "light" ? `text-black` : ""}`}
+                  >
+                    Rus
+                  </SelectItem>
+                  <SelectItem
+                    value="uz"
+                    className={`${theme === "light" ? `text-black` : ""}`}
+                  >
+                    Uz
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
@@ -47,4 +84,5 @@ export default function Header() {
       </header>
     </section>
   );
-}
+};
+export default Header;

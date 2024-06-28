@@ -1,16 +1,7 @@
 // Import project images
-import mobilux from "@/assets/img/projects/mobilux.png";
-import youtube from "@/assets/img/projects/youtube.png";
-
-type projectsProps = {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  live: string;
-  github: string;
-  stack: { name: string }[];
-}[];
+import mobilux from "@/assets/img/projects/mbx.png";
+import yt from "@/assets/img/projects/yt.png";
+import projectsProps from "@/types/projectprops";
 
 const projects: projectsProps = [
   {
@@ -18,7 +9,7 @@ const projects: projectsProps = [
     title: "Youtube Clone",
     description:
       "The app clone of youtube.In the app you can see information of videos and channels.It has features like searching for videos and selecting categories too",
-    image: youtube,
+    image: yt,
     live: "https://yt-abeek.netlify.app/",
     github: "https://github.com/abeekofficial/youtube_clone",
     stack: [{ name: "React Js, Material Ui, Typescript, Tailwind" }],

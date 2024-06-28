@@ -3,10 +3,13 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { CiMenuFries } from "react-icons/ci";
 import Links from "@/data/links";
 import { useEffect, useState } from "react";
+import { Switch } from "../ui/switch";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function MobileNav() {
   const location = useLocation();
   const pathname = location.pathname;
+  const { toggleTheme, theme } = useTheme();
 
   const [top, setTop] = useState<boolean>(true);
 
@@ -21,7 +24,11 @@ export default function MobileNav() {
   return (
     <Sheet>
       <SheetTrigger>
-        <CiMenuFries className="text-2xl text-accent" />
+        <CiMenuFries
+          className={`text-2xl font-semibold text-accent ${
+            theme === "light" ? `text-black font-black` : ""
+          }`}
+        />
       </SheetTrigger>
       <SheetContent className="flex flex-col items-center p-0">
         <Link to={"/"}>
@@ -42,6 +49,7 @@ export default function MobileNav() {
               {link.name}
             </Link>
           ))}
+          <Switch onClick={toggleTheme} />
         </nav>
       </SheetContent>
     </Sheet>

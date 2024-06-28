@@ -3,6 +3,8 @@ import { Button } from "../ui/button";
 import { FiDownload } from "react-icons/fi";
 import Social from "../social/social";
 import Photo from "../photo/photo";
+import CV from "@/assets/docs/Abbosbek-Ruzimov.pdf";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Home() {
   const [typeEffect] = useTypewriter({
@@ -12,8 +14,13 @@ export default function Home() {
     delaySpeed: 50,
   } as any);
 
+  const { theme } = useTheme();
   return (
-    <section className="h-full mt-10">
+    <section
+      className={`h-full mt-10 ${
+        theme === "light" ? `bg-gray-white text-black` : ""
+      }`}
+    >
       <div className="container mx-auto h-full">
         <div className="flex items-center justify-between flex-col xl:flex-row">
           <div className="text-center xl:text-left">
@@ -27,13 +34,12 @@ export default function Home() {
               perspective and eagerness to learn and innovate.
             </p>
             <div className="mt-3 flex gap-5 items-center flex-col xl:flex-row xl:items-center xl:mt-6">
-              <Button
-                variant={"outline"}
-                className="flex py-5 items-center gap-2"
-              >
-                <FiDownload />
-                Download CV
-              </Button>
+              <a href={CV} target="_blank" download="Mydoc">
+                <Button className="flex py-5 items-center gap-2">
+                  <FiDownload />
+                  Download CV
+                </Button>
+              </a>
               <Social />
             </div>
           </div>

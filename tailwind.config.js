@@ -39,7 +39,10 @@ module.exports = {
         jetbrains: ["JetBrains Mono", "monospace"],
       },
       colors: {
-        primary: "#1c1c22",
+        primary: {
+          light: "#FFFFFF", // Light theme background color
+          dark: "#333333", // Dark theme background color
+        },
         accent: {
           DEFAULT: "#00ff99",
           hover: "#00e187",

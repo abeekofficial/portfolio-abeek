@@ -13,9 +13,11 @@ import education from "@/data/education";
 import { ScrollArea } from "../ui/scroll-area";
 import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Resume() {
   const [showImage, setShowImage] = useState<string | null>(null);
+  const { theme } = useTheme();
 
   const handleShowImage = (image: string) => {
     setShowImage(image);
@@ -26,27 +28,55 @@ export default function Resume() {
   };
 
   return (
-    <div className="container">
+    <div
+      className={`container mt-20 ${
+        theme === "light" ? `bg-white text-black` : ""
+      }`}
+    >
       <Tabs
         defaultValue="about"
         className="flex flex-col xl:flex-row gap-[60px]"
       >
         <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
-          <TabsTrigger value="about">About me</TabsTrigger>
-          <TabsTrigger value="education">Education</TabsTrigger>
-          <TabsTrigger value="skills">Skills</TabsTrigger>
+          <TabsTrigger
+            className={`${theme === "light" ? `bg-gray-400 text-black` : ""}`}
+            value="about"
+          >
+            About me
+          </TabsTrigger>
+          <TabsTrigger
+            className={`${theme === "light" ? `bg-gray-400 text-black` : ""}`}
+            value="education"
+          >
+            Education
+          </TabsTrigger>
+          <TabsTrigger
+            className={`${theme === "light" ? `bg-gray-400 text-black` : ""}`}
+            value="skills"
+          >
+            Skills
+          </TabsTrigger>
         </TabsList>
         <div className="min-h-[70vh] w-full text-center">
           {/* About  */}
-          <TabsContent value="about" className="w-full">
-            <h1 className="text-4xl font-bold font-jetbrains text-gray-100 mb-3">
-              {about.title}
-            </h1>
-            <p className="font-medium text-md leading-loop text-white/60">
-              {about.content}
-            </p>
-
-            <ul className="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-10 max-w-[620px] mx-auto rounded-xl bg-[#27272c]">
+          <TabsContent value="about" className={`w-full `}>
+            <div className="my-5">
+              <h1
+                className={`text-5xl font-bold font-jetbrains text-gray-200 mb-10 ${
+                  theme === "light" ? `text-black` : ""
+                }`}
+              >
+                {about.title}
+              </h1>
+              <p className={`font-medium text-md leading-loop text-gray-400 `}>
+                {about.content}
+              </p>
+            </div>
+            <ul
+              className={`grid grid-cols-1 xl:grid-cols-2 gap-5 mt-10 max-w-[620px] mx-auto rounded-xl bg-[#27272c] py-5 px-7 ${
+                theme === "light" ? `bg-gray-400 text-black` : ""
+              }`}
+            >
               {about.info.map((info, index) => (
                 <li
                   key={index}
@@ -65,8 +95,12 @@ export default function Resume() {
 
           {/* Education  */}
           <TabsContent value="education" className="w-full">
-            <div className="my-5 text-center xl:text-left">
-              <h1 className="text-5xl font-bold font-jetbrains text-gray-100 mb-10">
+            <div className="my-5">
+              <h1
+                className={`text-5xl font-bold font-jetbrains text-gray-200 mb-10 ${
+                  theme === "light" ? `bg-white text-black` : ""
+                }`}
+              >
                 {education.title}
               </h1>
               <p className="font-medium text-md leading-loop text-gray-400">
@@ -78,9 +112,13 @@ export default function Resume() {
                 {education.records.map((edu) => (
                   <li
                     key={edu.id}
-                    className="flex items-center justify-center xl:justify-start"
+                    className={`flex items-center justify-center xl:justify-start`}
                   >
-                    <div className="p-5 w-[320px] flex flex-col gap-2 items-center rounded-xl bg-[#27272c]">
+                    <div
+                      className={`p-5 w-[320px] flex flex-col gap-2 items-center rounded-xl bg-[#27272c] ${
+                        theme === "light" ? `bg-gray-400 text-black` : ""
+                      }`}
+                    >
                       <p className="text-5xl text-outline font-extrabold leading-none text-gray-100">
                         {edu.id}
                       </p>
@@ -115,7 +153,7 @@ export default function Resume() {
             {skills.map((skill, index) => (
               <div key={index}>
                 <div className="my-5">
-                  <h1 className="text-5xl font-bold font-jetbrains text-gray-100 mb-10">
+                  <h1 className="text-5xl font-bold font-jetbrains text-gray-200 mb-10">
                     {skill.title}
                   </h1>
                   <p className="font-medium text-md leading-loop text-gray-400">
