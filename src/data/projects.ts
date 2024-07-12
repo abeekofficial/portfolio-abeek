@@ -2,7 +2,7 @@
 import mobilux from "@/assets/img/projects/mbx.png";
 import yt from "@/assets/img/projects/yt.png";
 import projectsProps from "@/types/projectprops";
-import zedmovie from "@/assets/img/projects/zedmovie.png";
+import zedmovie from "@/assets/img/projects/zedmovies.png";
 
 const projects: projectsProps = [
   {
@@ -17,7 +17,7 @@ const projects: projectsProps = [
   },
   {
     id: "02",
-    title: "Youtube Clone",
+    title: "ZedMovies",
     description:
       "Zedmovies is a movie streaming platform. It offers a variety of movies and series to watch. It has features like searching for movies and selecting categories too",
     image: zedmovie,
