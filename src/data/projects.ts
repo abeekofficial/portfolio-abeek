@@ -3,17 +3,22 @@ import mobilux from "@/assets/img/projects/mbx.png";
 import yt from "@/assets/img/projects/yt.png";
 import projectsProps from "@/types/projectprops";
 import zedmovie from "@/assets/img/projects/zedmovies.png";
+import mysplash from "@/assets/img/projects/my-splash.png";
 
 const projects: projectsProps = [
   {
     id: "01",
-    title: "Youtube Clone",
+    title: "My-Splash",
     description:
-      "The app clone of youtube.In the app you can see information of videos and channels.It has features like searching for videos and selecting categories too",
-    image: yt,
-    live: "https://yt-abeek.netlify.app/",
-    github: "https://github.com/abeekofficial/youtube_clone",
-    stack: [{ name: "React Js, Material Ui, Typescript, Tailwind" }],
+      "MySplash is a photo gallery application that allows users to browse and search for beautiful images. It features user authentication via Firebase, image download functionality, and a clean interface with image categorization and search capabilities.",
+    image: mysplash,
+    live: "https://mysplash-abeek.vercel.app/",
+    github: "https://github.com/abeekofficial/my-splash",
+    stack: [
+      {
+        name: "React, Material UI, Context API, Firebase Authentication, Firebase Storage, Unsplash API",
+      },
+    ],
   },
   {
     id: "02",
@@ -40,6 +45,16 @@ const projects: projectsProps = [
     stack: [
       { name: "Next Js, Typescript, Redux-toolkit, Tailwind, Shadcn Ui" },
     ],
+  },
+  {
+    id: "04",
+    title: "Youtube Clone",
+    description:
+      "The app clone of youtube.In the app you can see information of videos and channels.It has features like searching for videos and selecting categories too",
+    image: yt,
+    live: "https://yt-abeek.netlify.app/",
+    github: "https://github.com/abeekofficial/youtube_clone",
+    stack: [{ name: "React Js, Material Ui, Typescript, Tailwind" }],
   },
 ];
 
